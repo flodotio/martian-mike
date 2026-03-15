@@ -15,6 +15,10 @@ run/main_scene="uid://b7l8l35lewdig"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+AudioPlayer="*uid://ramvdxy3e3gx"
+
 [display]
 
 window/size/viewport_width=480
@@ -27,6 +31,7 @@ window/stretch/mode="canvas_items"
 
 traps=""
 jump_pads=""
+player=""
 
 [input]
 
@@ -62,6 +67,7 @@ quit={
 2d_physics/layer_2="player"
 2d_physics/layer_3="deathzone"
 2d_physics/layer_4="traps"
+2d_physics/layer_5="exit"
 
 [physics]
 

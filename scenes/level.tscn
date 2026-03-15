@@ -1,59 +1,64 @@
 [gd_scene format=3 uid="uid://b7l8l35lewdig"]
 
 [ext_resource type="Script" uid="uid://b6hntm6m1kkey" path="res://scripts/level.gd" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://cc5g3yy52om12" path="res://scenes/background.tscn" id="2_b121j"]
+[ext_resource type="PackedScene" uid="uid://dqcidrv8gx6lu" path="res://scenes/level_2.tscn" id="2_t1rx8"]
 [ext_resource type="PackedScene" uid="uid://c5hg7lddiimbq" path="res://scenes/player.tscn" id="2_w7c3h"]
-[ext_resource type="Texture2D" uid="uid://dqoaktxad8s4" path="res://icon.svg" id="3_w8frs"]
+[ext_resource type="PackedScene" uid="uid://ek4igqjdt0m2" path="res://scenes/ui.tscn" id="4_8iemx"]
 [ext_resource type="PackedScene" uid="uid://bl7inl4cv3pi1" path="res://scenes/jump_pad.tscn" id="4_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://8x6rkmdhvyhc" path="res://scenes/saw.tscn" id="4_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://b2stvvwmaucj3" path="res://scenes/spiked_ball.tscn" id="5_2r41h"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mx8sn"]
-size = Vector2(301, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8frs"]
-size = Vector2(632, 20)
+[ext_resource type="PackedScene" uid="uid://vk3xr8v6tguj" path="res://scenes/deathzone.tscn" id="5_t1rx8"]
+[ext_resource type="PackedScene" uid="uid://bi4oav7fev7if" path="res://scenes/tile_map.tscn" id="7_klq6b"]
+[ext_resource type="PackedScene" uid="uid://c4whvwpsbxky6" path="res://scenes/start.tscn" id="9_8c41q"]
+[ext_resource type="PackedScene" uid="uid://cf0o4vaclcb5e" path="res://scenes/exit.tscn" id="10_olg7q"]
 
 [node name="Level" type="Node2D" unique_id=1903068720]
 script = ExtResource("1_2q6dc")
+next_level = ExtResource("2_t1rx8")
+
+[node name="Background" parent="." unique_id=1441186060 instance=ExtResource("2_b121j")]
+scroll_offset = Vector2(336, -40)
+
+[node name="UI" parent="." unique_id=776869580 instance=ExtResource("4_8iemx")]
 
 [node name="Player" parent="." unique_id=1193313514 instance=ExtResource("2_w7c3h")]
-position = Vector2(145, 145)
+position = Vector2(30, 200)
 
-[node name="Ground" type="StaticBody2D" parent="." unique_id=1964195916]
-collision_mask = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="Ground" unique_id=391727740]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(145, 181.99998)
-scale = Vector2(2.34375, 0.1562499)
-texture = ExtResource("3_w8frs")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=219817056]
-position = Vector2(144.5, 182)
-shape = SubResource("RectangleShape2D_mx8sn")
-
-[node name="Deathzone" type="Area2D" parent="." unique_id=174018289]
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone" unique_id=2032029838]
-position = Vector2(211, 306)
-shape = SubResource("RectangleShape2D_w8frs")
-
-[node name="StartPosition" type="Node2D" parent="." unique_id=1942995363]
-position = Vector2(145, 145)
+[node name="Deathzone" parent="." unique_id=1216424017 instance=ExtResource("5_t1rx8")]
 
 [node name="Traps" type="Node2D" parent="." unique_id=1950839594]
 
 [node name="Saw" parent="Traps" unique_id=1908030042 instance=ExtResource("4_ppgk2")]
-position = Vector2(84, 152)
+position = Vector2(426, 205)
+
+[node name="Saw2" parent="Traps" unique_id=1827769064 instance=ExtResource("4_ppgk2")]
+position = Vector2(864, 80)
 
 [node name="SpikedBall" parent="Traps" unique_id=1651746367 instance=ExtResource("5_2r41h")]
-position = Vector2(191, 158)
+position = Vector2(200, 199)
+
+[node name="SpikedBall2" parent="Traps" unique_id=770290656 instance=ExtResource("5_2r41h")]
+position = Vector2(359, 207)
+rotation = 4.712389
 
 [node name="Objects" type="Node2D" parent="." unique_id=1755814652]
 
 [node name="JumpPad" parent="Objects" unique_id=860979546 instance=ExtResource("4_mx8sn")]
-position = Vector2(246, 171)
+position = Vector2(143, 224)
 
-[connection signal="body_entered" from="Deathzone" to="." method="_on_deathzone_body_entered"]
+[node name="JumpPad2" parent="Objects" unique_id=1899041864 instance=ExtResource("4_mx8sn")]
+position = Vector2(486, 224)
+
+[node name="JumpPad3" parent="Objects" unique_id=903247544 instance=ExtResource("4_mx8sn")]
+position = Vector2(624, 192)
+
+[node name="TileMap" parent="." unique_id=263575759 instance=ExtResource("7_klq6b")]
+layer_0/tile_data = PackedInt32Array(917505, 458752, 0, 983041, 458752, 1, 1048577, 458752, 2, 917506, 458752, 0, 983042, 458752, 1, 1048578, 458752, 2, 917507, 458752, 0, 983043, 458752, 1, 1048579, 458752, 2, 917508, 458752, 0, 983044, 458752, 1, 1048580, 458752, 2, 917509, 458752, 0, 983045, 458752, 1, 1048581, 458752, 2, 917510, 458752, 0, 983046, 458752, 1, 1048582, 458752, 2, 917511, 458752, 0, 983047, 458752, 1, 1048583, 458752, 2, 917512, 458752, 0, 983048, 458752, 1, 1048584, 458752, 2, 917513, 458752, 0, 983049, 458752, 1, 1048585, 458752, 2, 917514, 458752, 0, 983050, 458752, 1, 1048586, 458752, 2, 917515, 458752, 0, 983051, 458752, 1, 1048587, 458752, 2, 917516, 458752, 0, 983052, 458752, 1, 1048588, 458752, 2, 917517, 458752, 0, 983053, 458752, 1, 1048589, 458752, 2, 917518, 458752, 0, 983054, 458752, 1, 1048590, 458752, 2, 917519, 458752, 0, 983055, 458752, 1, 1048591, 458752, 2, 917520, 458752, 0, 983056, 458752, 1, 1048592, 458752, 2, 917521, 458752, 0, 983057, 458752, 1, 1048593, 458752, 2, 917522, 458752, 0, 983058, 458752, 1, 1048594, 458752, 2, 917523, 458752, 0, 983059, 458752, 1, 1048595, 458752, 2, 917524, 458752, 0, 983060, 458752, 1, 1048596, 458752, 2, 917525, 458752, 0, 983061, 458752, 1, 1048597, 458752, 2, 917526, 458752, 0, 983062, 458752, 1, 1048598, 458752, 2, 917527, 458752, 0, 983063, 458752, 1, 1048599, 458752, 2, 917528, 458752, 0, 983064, 458752, 1, 1048600, 458752, 2, 917530, 458752, 0, 983066, 458752, 1, 1048602, 458752, 2, 917531, 458752, 0, 983067, 458752, 1, 1048603, 458752, 2, 917529, 458752, 0, 983065, 458752, 1, 1048601, 458752, 2, 917532, 458752, 0, 983068, 458752, 1, 1048604, 458752, 2, 917504, 589824, 1, 983040, 458752, 1, 1048576, 458752, 2, 917539, 458752, 1, 983075, 458752, 1, 1048611, 458752, 2, 917533, 458752, 0, 983069, 458752, 1, 1048605, 458752, 2, 917534, 458752, 0, 983070, 458752, 1, 1048606, 458752, 2, 917535, 458752, 0, 983071, 458752, 1, 1048607, 458752, 2, 917536, 655360, 1, 983072, 458752, 1, 1048608, 458752, 2, 917537, 458752, 1, 983073, 458752, 1, 1048609, 458752, 2, 917538, 458752, 1, 983074, 458752, 1, 1048610, 458752, 2, 917540, 458752, 1, 983076, 458752, 1, 1048612, 458752, 2, 917541, 458752, 1, 983077, 458752, 1, 1048613, 458752, 2, 786470, 458752, 0, 852006, 458752, 1, 917542, 458752, 1, 983078, 458752, 1, 1048614, 458752, 2, 786471, 458752, 0, 852007, 458752, 1, 917543, 458752, 1, 983079, 458752, 1, 1048615, 458752, 2, 786472, 524288, 0, 852008, 524288, 1, 917544, 524288, 1, 983080, 524288, 1, 1048616, 524288, 2, 786464, 393216, 0, 852000, 393216, 1, 786465, 458752, 0, 852001, 458752, 1, 655394, 393216, 0, 720930, 393216, 1, 786466, 655360, 1, 852002, 458752, 1, 655395, 458752, 0, 720931, 458752, 1, 786467, 458752, 1, 852003, 458752, 1, 655396, 524288, 0, 720932, 524288, 1, 786468, 589824, 1, 852004, 458752, 1, 786469, 458752, 0, 852005, 458752, 1, 786481, 655360, 1, 852017, 458752, 2, 393266, 458752, 0, 458802, 458752, 1, 786482, 524288, 1, 852018, 524288, 2, 393267, 524288, 0, 458803, 524288, 1, 524341, 458752, 0, 589877, 458752, 1, 524342, 458752, 0, 589878, 458752, 1, 524343, 458752, 0, 589879, 458752, 1, 655415, 458752, 2, 524344, 458752, 0, 589880, 458752, 1, 655416, 458752, 2, 524345, 458752, 0, 589881, 458752, 1, 655417, 458752, 2, 524346, 458752, 0, 589882, 458752, 1, 655418, 458752, 2, 524347, 458752, 0, 589883, 458752, 1, 655419, 458752, 2, 524348, 524288, 0, 589884, 524288, 1, 655420, 524288, 2, 786475, 393216, 0, 852011, 393216, 2, 786476, 458752, 0, 852012, 458752, 2, 393261, 393216, 0, 458797, 393216, 1, 786477, 458752, 0, 852013, 458752, 2, 393262, 458752, 0, 458798, 458752, 1, 786478, 458752, 0, 852014, 458752, 2, 393263, 458752, 0, 458799, 458752, 1, 524335, 393216, 1, 589871, 393216, 2, 786479, 458752, 0, 852015, 458752, 2, 393264, 458752, 0, 458800, 458752, 1, 524336, 458752, 1, 589872, 458752, 2, 786480, 458752, 0, 852016, 458752, 2, 393265, 458752, 0, 458801, 458752, 1, 524337, 458752, 1, 589873, 458752, 1, 655409, 393216, 1, 720945, 393216, 1, 524338, 458752, 1, 589874, 458752, 1, 655410, 458752, 1, 720946, 524288, 1, 524339, 589824, 1, 589875, 458752, 1, 655411, 458752, 2, 524340, 458752, 0, 589876, 458752, 1, 655412, 458752, 2, 655413, 458752, 2, 655414, 458752, 2, 589841, 1114112, 1, 589842, 1179648, 1, 589843, 1245184, 1, 851968, 524288, 1, 786432, 524288, 1, 720896, 524288, 1, 655360, 524288, 1, 589824, 524288, 1, 524288, 524288, 1, 458752, 524288, 1, 393216, 524288, 1, 327680, 524288, 1, 262144, 524288, 1, 196608, 524288, 1, 131072, 524288, 1, 1114111, 458752, 2, 1048575, 458752, 1, 983039, 458752, 1, 917503, 458752, 1, 851967, 458752, 1, 786431, 458752, 1, 720895, 458752, 1, 655359, 458752, 1, 589823, 458752, 1, 524287, 458752, 1, 458751, 458752, 1, 393215, 458752, 1, 327679, 458752, 1, 262143, 458752, 1, 196607, 458752, 1, 1114110, 458752, 2, 1048574, 458752, 1, 983038, 458752, 1, 917502, 458752, 1, 851966, 458752, 1, 786430, 458752, 1, 720894, 458752, 1, 655358, 458752, 1, 589822, 458752, 1, 524286, 458752, 1, 458750, 458752, 1, 393214, 458752, 1, 327678, 458752, 1, 262142, 458752, 1, 196606, 458752, 1, 1114109, 393216, 2, 1048573, 393216, 1, 983037, 393216, 1, 917501, 393216, 1, 851965, 393216, 1, 786429, 393216, 1, 720893, 393216, 1, 655357, 393216, 1, 589821, 393216, 1, 524285, 393216, 1, 458749, 393216, 1, 393213, 393216, 1, 327677, 393216, 1, 262141, 393216, 1, 196605, 393216, 1, 65536, 524288, 1, 0, 524288, 1, -65536, 524288, 1, -131072, 524288, 1, -196608, 524288, 0, 131071, 458752, 1, 65535, 458752, 1, -1, 458752, 1, -65537, 458752, 1, -131073, 458752, 0, 131070, 458752, 1, 65534, 458752, 1, -2, 458752, 1, -65538, 458752, 1, -131074, 458752, 0, 131069, 393216, 1, 65533, 393216, 1, -3, 393216, 1, -65539, 393216, 1, -131075, 393216, 0)
+
+[node name="Start" parent="." unique_id=1160182365 instance=ExtResource("9_8c41q")]
+position = Vector2(79, 224)
+
+[node name="Exit" parent="." unique_id=254642370 instance=ExtResource("10_olg7q")]
+z_index = -20
+position = Vector2(944, 128)

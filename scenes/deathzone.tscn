@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://vk3xr8v6tguj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8frs"]
+size = Vector2(4870, 48)
+
+[node name="Deathzone" type="Area2D" unique_id=1216424017]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1349578663]
+position = Vector2(1976, 320)
+shape = SubResource("RectangleShape2D_w8frs")

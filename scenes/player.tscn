@@ -199,7 +199,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_smehm"]
 size = Vector2(14, 24)
 
-[node name="Player" type="CharacterBody2D" unique_id=1193313514]
+[node name="Player" type="CharacterBody2D" unique_id=1193313514 groups=["player"]]
+z_index = 100
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_qlg0r")
@@ -215,4 +216,6 @@ position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_smehm")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=357706720]
-limit_bottom = 192
+limit_left = 0
+limit_top = 0
+limit_bottom = 270

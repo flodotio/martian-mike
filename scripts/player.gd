@@ -5,16 +5,21 @@ class_name Player
 @export var speed = 125
 @export var jump_force = 200
 
+var active = true
+
 @onready var animated_sprite = $AnimatedSprite2D
 
 func _physics_process(delta):
 	if !is_on_floor():
 		velocity.y = clamp(velocity.y + gravity * delta, -500, 500)
 	
-	if Input.is_action_just_pressed("jump") && is_on_floor():
-		jump(jump_force)
+	var direction = 0
 	
-	var direction = Input.get_axis("move_left", "move_right")
+	if active:
+		if Input.is_action_just_pressed("jump") && is_on_floor():
+			jump(jump_force)
+		direction = Input.get_axis("move_left", "move_right")
+		
 	velocity.x = direction* speed
 	
 	update_animations(direction)
@@ -22,6 +27,7 @@ func _physics_process(delta):
 	
 func jump(force):
 	velocity.y = -force
+	AudioPlayer.play_sfx("jump")
 
 func update_animations(direction):
 	if is_on_floor():
